@@ -1,156 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>For My Pri ❤️</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/style.css">
+<meta charset="UTF-8" />
+<title>For My Pri ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- OPTIONAL: GSAP (animation only, no fonts) -->
+<script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+
+<style>
+/* =========================
+   SYSTEM FONT STACK ONLY
+   ========================= */
+:root {
+  --rose: #fb7185;
+  --rose-soft: rgba(251,113,133,.35);
+  --glass: rgba(255,255,255,.12);
+  --glass-border: rgba(255,255,255,.25);
+  --bg: radial-gradient(circle at top, #1a1a1a, #000);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: #fff;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  overflow-x: hidden;
+}
+
+/* =========================
+   SVG HEART ANIMATION
+   ========================= */
+.heart-wrap {
+  width: 120px;
+  margin: 0 auto 1rem;
+}
+
+.heart-svg {
+  width: 100%;
+  height: auto;
+  animation: heartBeat 1.6s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px rgba(251,113,133,.6));
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.08); }
+  40% { transform: scale(0.96); }
+  60% { transform: scale(1.12); }
+}
+
+
+/* =========================
+   HEARTBEAT VISUAL PULSE
+   ========================= */
+body.heartbeat-pulse {
+  animation: pulseBg .4s ease-out;
+}
+@keyframes pulseBg {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.15); }
+  100% { filter: brightness(1); }
+}
+
+/* =========================
+   MODAL SYSTEM
+   ========================= */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  width: min(92vw, 480px);
+  padding: 2.2rem;
+  border-radius: 22px;
+  background: linear-gradient(180deg, var(--glass), rgba(255,255,255,.04));
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 0 60px rgba(251,113,133,.25);
+  text-align: center;
+  transform: scale(.85) translateY(30px);
+  opacity: 0;
+  transition: all .5s cubic-bezier(.22,1,.36,1);
+}
+
+.overlay.active .modal {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: .9rem 1.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.btn:active { transform: scale(.95); }
+
+.btn-rose {
+  background: var(--rose);
+  color: #fff;
+  box-shadow: 0 0 25px var(--rose-soft);
+}
+
+.btn-green {
+  background: #22c55e;
+  color: #052e16;
+  box-shadow: 0 0 25px rgba(34,197,94,.35);
+}
+
+.btn-gray {
+  background: #2a2a2a;
+  color: #ddd;
+}
+
+/* =========================
+   FLOAT / MICRO ANIMATIONS
+   ========================= */
+.float {
+  animation: float 3.5s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* =========================
+   TEXT
+   ========================= */
+h1, h2 {
+  color: var(--rose);
+  margin-bottom: 1rem;
+}
+
+.reason {
+  padding: .8rem 1rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.18);
+}
+
+.signature {
+  margin-top: 2rem;
+  font-size: .85rem;
+  opacity: .8;
+}
+
+/* =========================
+   HEART CONFETTI
+   ========================= */
+.confetti-heart {
+  position: fixed;
+  top: -20px;
+  width: 14px;
+  height: 14px;
+  background: #fb7185; 
+  transform: rotate(45deg);
+  opacity: 0.9;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+.confetti-heart::before,
+.confetti-heart::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.confetti-heart::before {
+  top: -7px;
+  left: 0;
+}
+
+.confetti-heart::after {
+  left: -7px;
+  top: 0;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+.final-heart .heart-svg {
+  animation-duration: 1.2s;
+}
+
+</style>
 </head>
 
 <body>
 
 <!-- HEARTBEAT AUDIO -->
-<audio id="heartbeatAudio" loop preload="auto">
-    <source src="{{ url_for('static', filename='heartbeat.wav') }}" type="audio/wav">
+<audio id="heartbeat" loop preload="auto">
+  <source src="/static/heartbeat.wav" type="audio/wav">
 </audio>
 
-<main style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem;">
+<!-- =========================
+     MODALS (QUESTS)
+     ========================= -->
 
-<!-- STAGE 1 -->
-<section id="stage1" class="stage active card float">
-    <img src="https://media.giphy.com/media/v49K3D2fF9V6E/giphy.gif" height="150">
-    <h1 style="color:#fb7185;font-size:2.6rem;margin:1.4rem 0;">Hi Pri… ✨</h1>
-    <button class="btn-rose" onclick="nextStage(2)">Hi 👋</button>
-</section>
-
-<!-- STAGE 2 -->
-<section id="stage2" class="stage card">
-    <h2 style="color:#fb7185;font-size:2.1rem;">How are you today, beautiful?</h2>
-    <div style="margin-top:1.6rem;display:flex;flex-direction:column;gap:1rem;">
-        <button class="btn-green" onclick="nextStage(3)">I’m doing great 😊</button>
-        <button class="btn-gray" onclick="sadMode()">A bit tired 😔</button>
+<div id="m1" class="overlay active">
+  <div class="modal float">
+    <div class="heart-wrap">
+      <svg class="heart-svg" viewBox="0 0 32 29.6" fill="#fb7185">
+        <path d="
+          M23.6,0
+          c-3.4,0-6.4,2.1-7.6,5.1
+          C14.8,2.1,11.8,0,8.4,0
+          C3.8,0,0,3.8,0,8.4
+          c0,9.4,16,21.2,16,21.2
+          s16-11.8,16-21.2
+          C32,3.8,28.2,0,23.6,0z
+        "/>
+      </svg>
     </div>
-</section>
+    <h1>Hi Pri ✨</h1>
+    <button class="btn btn-rose" onclick="next(2)">Hi 👋</button>
+  </div>
+</div>
 
-<!-- STAGE 3 -->
-<section id="stage3" class="stage card">
-    <img id="moodImg" src="https://media.giphy.com/media/L95W4wv8nnb9Brq2S2/giphy.gif" height="140">
-    <p id="moodText" style="margin:1.6rem 0;font-style:italic;">
-        I was thinking about the <b>Psychology of Money</b> book you got me…
-        It made me realize that logic matters, but love is about <b>you</b>.
+<div id="m2" class="overlay">
+  <div class="modal">
+    <h2>How are you today, beautiful?</h2>
+    <div style="display:grid;gap:1rem;margin-top:1.4rem;">
+      <button class="btn btn-green" onclick="next(3)">I’m doing great 😊</button>
+      <button class="btn btn-gray" onclick="sad()">A bit tired 😔</button>
+    </div>
+  </div>
+</div>
+
+<div id="m3" class="overlay">
+  <div class="modal">
+    <div class="heart-wrap">
+      <svg class="heart-svg" viewBox="0 0 32 29.6" fill="#fb7185">
+        <path d="
+          M23.6,0
+          c-3.4,0-6.4,2.1-7.6,5.1
+          C14.8,2.1,11.8,0,8.4,0
+          C3.8,0,0,3.8,0,8.4
+          c0,9.4,16,21.2,16,21.2
+          s16-11.8,16-21.2
+          C32,3.8,28.2,0,23.6,0z
+        "/>
+      </svg>
+    </div>
+    <p id="moodText" style="margin:1.4rem 0;font-style:italic;">
+      I was thinking about the <b>Psychology of Money</b> book you got me…
+      It reminded me that love is about <b>you</b>.
     </p>
-    <button class="btn-rose" onclick="nextStage(4)">Continue ❤️</button>
-</section>
+    <button class="btn btn-rose" onclick="next(4)">Continue ❤️</button>
+  </div>
+</div>
 
-<!-- STAGE 4 -->
-<section id="stage4" class="stage card">
-    <h1 style="color:#fb7185;font-size:2.4rem;">Will you be my Valentine? 🌹</h1>
-
+<div id="m4" class="overlay">
+  <div class="modal">
+    <h1>Will you be my Valentine? 🌹</h1>
     <div style="margin-top:2rem;position:relative;height:120px;">
-        <button id="yesBtn" class="btn-green" onclick="celebrate()">Yes!</button>
-        <button id="noBtn" class="btn-rose" onmouseover="moveNo()" onclick="moveNo()">No</button>
+      <button id="yesBtn" class="btn btn-green" onclick="yes()">Yes!</button>
+      <button id="noBtn" class="btn btn-rose"
+        style="position:absolute;right:0;"
+        onmouseover="runNo()">No</button>
     </div>
-</section>
+  </div>
+</div>
 
-<!-- FINAL -->
-<section id="finalStage" class="stage card" style="max-width:700px;">
-    <img src="https://media.giphy.com/media/igS6K9F5zD3pT957g0/giphy.gif" height="160">
-    <h1 style="color:#fb7185;font-size:3rem;">She said YES ❤️</h1>
+<div id="final" class="overlay">
+  <div class="modal">
+    <div class="heart-wrap final-heart">
+      <svg class="heart-svg" viewBox="0 0 32 29.6" fill="#fb7185">
+        <path d="M23.6,0c-3.4,0-6.4,2.1-7.6,5.1C14.8,2.1,11.8,0,8.4,0
+        C3.8,0,0,3.8,0,8.4c0,9.4,16,21.2,16,21.2
+        s16-11.8,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+      </svg>
+    </div>
 
-    <p style="font-weight:600;color:#fb7185;">5 reasons why I love you:</p>
+    <h1>She said YES ❤️</h1>
 
-    <div style="display:grid;gap:1rem;margin-top:1.5rem;">
-        <div class="reason">Your thoughtfulness — like that book.</div>
-        <div class="reason">Your smile — instant reset.</div>
-        <div class="reason">Your support — my peace.</div>
-        <div class="reason">Our conversations — finance to nonsense.</div>
-        <div class="reason">Just you — irreplaceable.</div>
+    <div style="display:grid;gap:.8rem;margin-top:1.2rem;">
+      <div class="reason">Your thoughtfulness</div>
+      <div class="reason">Your smile</div>
+      <div class="reason">Your support</div>
+      <div class="reason">Our conversations</div>
+      <div class="reason">Just you</div>
     </div>
 
     <p class="signature">
-        This page exists only for you.<br>
-        Built with love — by MENE.
+      This page exists only for you.<br>
+      Built with love — by MENE.
     </p>
-</section>
-
-</main>
+  </div>
+</div>
 
 <script>
-let currentStage = 1;
+/* =========================
+   HEARTBEAT
+   ========================= */
+const beat = document.getElementById("heartbeat");
+let beatOn = false;
 
-/* HEARTBEAT AUDIO */
-const heartbeat = document.getElementById("heartbeatAudio");
-let heartbeatEnabled = false;
+function enableBeat() {
+  if (beatOn) return;
+  beat.volume = .15;
+  beat.play().catch(()=>{});
+  beatOn = true;
+  document.body.removeEventListener("click", enableBeat);
+}
+document.body.addEventListener("click", enableBeat);
 
-function enableHeartbeat() {
-    if (heartbeatEnabled) return;
-    heartbeat.volume = 0.15;
-    heartbeat.play().catch(()=>{});
-    heartbeatEnabled = true;
-    document.removeEventListener("click", enableHeartbeat);
-    document.removeEventListener("touchstart", enableHeartbeat);
+function pulse(v=.25) {
+  if (!beatOn) return;
+  beat.volume = Math.min(v,.35);
+  document.body.classList.add("heartbeat-pulse");
+  setTimeout(()=>{
+    beat.volume=.15;
+    document.body.classList.remove("heartbeat-pulse");
+  },400);
 }
 
-document.addEventListener("click", enableHeartbeat);
-document.addEventListener("touchstart", enableHeartbeat);
+/* =========================
+   MODAL FLOW
+   ========================= */
+let current = 1;
 
-function pulseHeartbeat(intensity = 0.25) {
-    if (!heartbeatEnabled) return;
-    heartbeat.volume = Math.min(intensity, 0.35);
-    document.body.classList.add("heartbeat-pulse");
-    setTimeout(() => {
-        heartbeat.volume = 0.15;
-        document.body.classList.remove("heartbeat-pulse");
-    }, 400);
+function show(n) {
+  document.getElementById(`m${current}`)?.classList.remove("active");
+  document.getElementById(`m${n}`)?.classList.add("active");
+  current = n;
+  pulse();
 }
 
-/* STAGE NAV */
-function nextStage(n) {
-    pulseHeartbeat(0.25);
-    document.getElementById(`stage${currentStage}`).classList.remove("active");
-    document.getElementById(`stage${n}`).classList.add("active");
-    currentStage = n;
+function next(n){ show(n); }
+
+function sad(){
+  document.getElementById("moodText").innerHTML =
+    "I hate that you’re tired… but I hope this reminds you how deeply I care ❤️";
+
+  document.querySelector(".heart-svg").style.filter =
+    "drop-shadow(0 0 28px rgba(251,113,133,.9))";
+
+  show(3);
 }
 
-function sadMode() {
-    pulseHeartbeat(0.22);
-    document.getElementById("moodText").innerHTML =
-        "I hate that you’re tired… but I hope this reminds you how deeply I care ❤️";
-    document.getElementById("moodImg").src =
-        "https://media.giphy.com/media/d7rvF20PqNuGKSQGgc/giphy.gif";
-    nextStage(3);
+
+/* =========================
+   NO BUTTON CHAOS
+   ========================= */
+function runNo(){
+  pulse(.3);
+  const no = document.getElementById("noBtn");
+  const yes = document.getElementById("yesBtn");
+
+  no.style.left = Math.random()*200+"px";
+  no.style.top = Math.random()*80+"px";
+
+  const s = (parseFloat(yes.dataset.s)||1)+.12;
+  yes.dataset.s=s;
+  yes.style.transform=`scale(${s})`;
 }
 
-/* NO BUTTON */
-function moveNo() {
-    pulseHeartbeat(0.3);
-    const no = document.getElementById("noBtn");
-    const yes = document.getElementById("yesBtn");
+/* =========================
+   FINAL
+   ========================= */
+function yes() {
+  pulse(.35);
+  heartConfetti(60);
 
-    const maxX = window.innerWidth - no.offsetWidth - 20;
-    const maxY = window.innerHeight - no.offsetHeight - 20;
+  localStorage.setItem("priYes", "1");
 
-    no.style.left = Math.random() * maxX + "px";
-    no.style.top = Math.random() * maxY + "px";
-
-    const scale = parseFloat(yes.dataset.scale || 1) + 0.15;
-    yes.dataset.scale = scale;
-    yes.style.transform = `scale(${scale})`;
+  document.getElementById("m4").classList.remove("active");
+  document.getElementById("final").classList.add("active");
 }
 
-/* FINAL */
-function celebrate() {
-    pulseHeartbeat(0.35);
-    localStorage.setItem("priSaidYes", "true");
-    document.getElementById(`stage${currentStage}`).classList.remove("active");
-    document.getElementById("finalStage").classList.add("active");
+
+if(localStorage.getItem("priYes")){
+  document.querySelectorAll(".overlay").forEach(o=>o.classList.remove("active"));
+  document.getElementById("final").classList.add("active");
 }
 
-/* MEMORY */
-if (localStorage.getItem("priSaidYes")) {
-    document.getElementById("stage1").classList.remove("active");
-    document.getElementById("finalStage").classList.add("active");
+/* =========================
+   HEART CONFETTI BURST
+   ========================= */
+function heartConfetti(count = 40) {
+  for (let i = 0; i < count; i++) {
+    const heart = document.createElement("div");
+    heart.className = "confetti-heart";
+
+    const size = Math.random() * 10 + 10;
+    heart.style.width = size + "px";
+    heart.style.height = size + "px";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.background = `hsl(${340 + Math.random()*10}, 90%, 70%)`;
+
+    const duration = Math.random() * 2 + 3;
+    heart.style.animationDuration = duration + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), duration * 1000);
+  }
 }
+
 </script>
 
 </body>
