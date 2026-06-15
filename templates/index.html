@@ -1,443 +1,680 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>For My Pri ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<!-- OPTIONAL: GSAP (animation only, no fonts) -->
-<script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-
-<style>
-/* =========================
-   SYSTEM FONT STACK ONLY
-   ========================= */
-:root {
-  --rose: #fb7185;
-  --rose-soft: rgba(251,113,133,.35);
-  --glass: rgba(255,255,255,.12);
-  --glass-border: rgba(255,255,255,.25);
-  --bg: radial-gradient(circle at top, #1a1a1a, #000);
-}
-
-* { box-sizing: border-box; }
-
-html, body {
-  margin: 0;
-  min-height: 100vh;
-  background: var(--bg);
-  color: #fff;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Helvetica,
-    Arial,
-    sans-serif;
-  overflow-x: hidden;
-}
-
-/* =========================
-   SVG HEART ANIMATION
-   ========================= */
-.heart-wrap {
-  width: 120px;
-  margin: 0 auto 1rem;
-}
-
-.heart-svg {
-  width: 100%;
-  height: auto;
-  animation: heartBeat 1.6s ease-in-out infinite;
-  filter: drop-shadow(0 0 18px rgba(251,113,133,.6));
-}
-
-@keyframes heartBeat {
-  0%, 100% { transform: scale(1); }
-  25% { transform: scale(1.08); }
-  40% { transform: scale(0.96); }
-  60% { transform: scale(1.12); }
-}
-
-
-/* =========================
-   HEARTBEAT VISUAL PULSE
-   ========================= */
-body.heartbeat-pulse {
-  animation: pulseBg .4s ease-out;
-}
-@keyframes pulseBg {
-  0% { filter: brightness(1); }
-  50% { filter: brightness(1.15); }
-  100% { filter: brightness(1); }
-}
-
-/* =========================
-   MODAL SYSTEM
-   ========================= */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.65);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .4s ease;
-}
-
-.overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.modal {
-  width: min(92vw, 480px);
-  padding: 2.2rem;
-  border-radius: 22px;
-  background: linear-gradient(180deg, var(--glass), rgba(255,255,255,.04));
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(18px);
-  box-shadow: 0 0 60px rgba(251,113,133,.25);
-  text-align: center;
-  transform: scale(.85) translateY(30px);
-  opacity: 0;
-  transition: all .5s cubic-bezier(.22,1,.36,1);
-}
-
-.overlay.active .modal {
-  transform: scale(1) translateY(0);
-  opacity: 1;
-}
-
-/* =========================
-   BUTTONS
-   ========================= */
-.btn {
-  border: none;
-  border-radius: 999px;
-  padding: .9rem 1.6rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-
-.btn:active { transform: scale(.95); }
-
-.btn-rose {
-  background: var(--rose);
-  color: #fff;
-  box-shadow: 0 0 25px var(--rose-soft);
-}
-
-.btn-green {
-  background: #22c55e;
-  color: #052e16;
-  box-shadow: 0 0 25px rgba(34,197,94,.35);
-}
-
-.btn-gray {
-  background: #2a2a2a;
-  color: #ddd;
-}
-
-/* =========================
-   FLOAT / MICRO ANIMATIONS
-   ========================= */
-.float {
-  animation: float 3.5s ease-in-out infinite;
-}
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-/* =========================
-   TEXT
-   ========================= */
-h1, h2 {
-  color: var(--rose);
-  margin-bottom: 1rem;
-}
-
-.reason {
-  padding: .8rem 1rem;
-  border-radius: 14px;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.18);
-}
-
-.signature {
-  margin-top: 2rem;
-  font-size: .85rem;
-  opacity: .8;
-}
-
-/* =========================
-   HEART CONFETTI
-   ========================= */
-.confetti-heart {
-  position: fixed;
-  top: -20px;
-  width: 14px;
-  height: 14px;
-  background: #fb7185; 
-  transform: rotate(45deg);
-  opacity: 0.9;
-  pointer-events: none;
-  animation: fall linear forwards;
-}
-
-.confetti-heart::before,
-.confetti-heart::after {
-  content: "";
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background: inherit;
-  border-radius: 50%;
-}
-
-.confetti-heart::before {
-  top: -7px;
-  left: 0;
-}
-
-.confetti-heart::after {
-  left: -7px;
-  top: 0;
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(110vh) rotate(720deg);
-    opacity: 0;
-  }
-}
-.final-heart .heart-svg {
-  animation-duration: 1.2s;
-}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Sweet 18, My Pri ❤️</title>
+  
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Link to stylesheet -->
+  <link rel="stylesheet" href="/static/css/style.css">
+  
+  <!-- GSAP for smooth animations -->
+  <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
 </head>
-
 <body>
 
-<!-- HEARTBEAT AUDIO -->
-<audio id="heartbeat" loop preload="auto">
-  <source src="/static/heartbeat.wav" type="audio/wav">
-</audio>
+  <!-- SVG HEART CLIP PATH (For heart-shaped images) -->
+  <svg width="0" height="0" style="position: absolute;">
+    <defs>
+      <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
+        <path d="M 0.5, 0.22 
+                 C 0.64, 0.02, 0.94, 0.08, 0.94, 0.38 
+                 C 0.94, 0.68, 0.72, 0.84, 0.5, 0.98 
+                 C 0.28, 0.84, 0.06, 0.68, 0.06, 0.38 
+                 C 0.06, 0.08, 0.36, 0.02, 0.5, 0.22 Z" />
+      </clipPath>
+    </defs>
+  </svg>
 
-<!-- =========================
-     MODALS (QUESTS)
-     ========================= -->
+  <!-- HEARTBEAT AUDIO -->
+  <audio id="heartbeat" loop preload="auto">
+    <source src="/static/heartbeat.wav" type="audio/wav">
+  </audio>
 
-<div id="m1" class="overlay active">
-  <div class="modal float">
-    <div class="heart-wrap">
-      <svg class="heart-svg" viewBox="0 0 32 29.6" fill="#fb7185">
-        <path d="
-          M23.6,0
-          c-3.4,0-6.4,2.1-7.6,5.1
-          C14.8,2.1,11.8,0,8.4,0
-          C3.8,0,0,3.8,0,8.4
-          c0,9.4,16,21.2,16,21.2
-          s16-11.8,16-21.2
-          C32,3.8,28.2,0,23.6,0z
-        "/>
+  <!-- FLOATING AUDIO WIDGET -->
+  <div class="audio-widget">
+    <button class="audio-btn" onclick="toggleAudio()" aria-label="Toggle Sound">
+      <!-- Music note SVG -->
+      <svg id="audio-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18V5l12-2v13"></path>
+        <circle cx="6" cy="18" r="3"></circle>
+        <circle cx="18" cy="16" r="3"></circle>
       </svg>
-    </div>
-    <h1>Hi Pri ✨</h1>
-    <button class="btn btn-rose" onclick="next(2)">Hi 👋</button>
+    </button>
+    <span class="audio-status-text" id="audio-status">Sound: Off</span>
   </div>
-</div>
 
-<div id="m2" class="overlay">
-  <div class="modal">
-    <h2>How are you today, beautiful?</h2>
-    <div style="display:grid;gap:1rem;margin-top:1.4rem;">
-      <button class="btn btn-green" onclick="next(3)">I’m doing great 😊</button>
-      <button class="btn btn-gray" onclick="sad()">A bit tired 😔</button>
-    </div>
-  </div>
-</div>
+  <!-- BACKGROUND PARTICLE CANVAS -->
+  <canvas id="particleCanvas"></canvas>
 
-<div id="m3" class="overlay">
-  <div class="modal">
-    <div class="heart-wrap">
-      <svg class="heart-svg" viewBox="0 0 32 29.6" fill="#fb7185">
-        <path d="
-          M23.6,0
-          c-3.4,0-6.4,2.1-7.6,5.1
-          C14.8,2.1,11.8,0,8.4,0
-          C3.8,0,0,3.8,0,8.4
-          c0,9.4,16,21.2,16,21.2
-          s16-11.8,16-21.2
-          C32,3.8,28.2,0,23.6,0z
-        "/>
-      </svg>
-    </div>
-    <p id="moodText" style="margin:1.4rem 0;font-style:italic;">
-      I was thinking about the <b>Psychology of Money</b> book you got me…
-      It reminded me that love is about <b>you</b>.
-    </p>
-    <button class="btn btn-rose" onclick="next(4)">Continue ❤️</button>
-  </div>
-</div>
-
-<div id="m4" class="overlay">
-  <div class="modal">
-    <h1>Will you be my Valentine? 🌹</h1>
-    <div style="margin-top:2rem;position:relative;height:120px;">
-      <button id="yesBtn" class="btn btn-green" onclick="yes()">Yes!</button>
-      <button id="noBtn" class="btn btn-rose"
-        style="position:absolute;right:0;"
-        onmouseover="runNo()">No</button>
+  <!-- ==========================================
+       ENTRY STAGE (WELCOME SCREEN)
+       ========================================== -->
+  <div class="entry-screen" id="entryScreen">
+    <div class="entry-content">
+      <div class="entry-heart-container" onclick="startCelebration()">
+        <svg class="entry-heart-svg" viewBox="0 0 32 29.6">
+          <path d="M23.6,0c-3.4,0-6.4,2.1-7.6,5.1C14.8,2.1,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,16,21.2,16,21.2s16-11.8,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+        </svg>
+        <span class="entry-heart-text">18</span>
+      </div>
+      <h1 class="entry-title">Happy Sweet 18, Pri ✨</h1>
+      <p class="entry-subtitle">To my babe, my better half, and my entire world. Click the heart to open a world dedicated entirely to celebrating you.</p>
+      <button class="entry-btn" onclick="startCelebration()">Open My Heart 💖</button>
     </div>
   </div>
-</div>
 
-<div id="final" class="overlay">
-  <div class="modal">
-    <div class="heart-wrap final-heart">
-      <svg class="heart-svg" viewBox="0 0 32 29.6" fill="#fb7185">
-        <path d="M23.6,0c-3.4,0-6.4,2.1-7.6,5.1C14.8,2.1,11.8,0,8.4,0
-        C3.8,0,0,3.8,0,8.4c0,9.4,16,21.2,16,21.2
-        s16-11.8,16-21.2C32,3.8,28.2,0,23.6,0z"/>
-      </svg>
+  <!-- ==========================================
+       MAIN HUB AREA
+       ========================================== -->
+  <div class="main-hub" id="mainHub">
+    
+    <header class="hub-header">
+      <h1 class="hub-title">Celebrating Pri</h1>
+      <div class="hub-tagline">Sweet 18 Years of Love & Laughter</div>
+    </header>
+
+    <!-- HORIZONTAL SIDE SCROLLING GALLERY (HEART SHAPES) -->
+    <div class="gallery-container">
+      <div class="gallery-track">
+        <!-- 6 gallery items duplicated to create a seamless infinite loop -->
+        <div class="gallery-item"><img src="/static/images/her1.png" alt="Pri 1" class="gallery-img"></div>
+        <div class="gallery-item"><img src="/static/images/her2.png" alt="Pri 2" class="gallery-img"></div>
+        <div class="gallery-item"><img src="/static/images/her3.png" alt="Pri 3" class="gallery-img"></div>
+        <div class="gallery-item"><img src="/static/images/her4.png" alt="Pri 4" class="gallery-img"></div>
+        <div class="gallery-item"><img src="/static/images/her1.png" alt="Pri 5" class="gallery-img"></div>
+        <div class="gallery-item"><img src="/static/images/her2.png" alt="Pri 6" class="gallery-img"></div>
+        
+        <!-- Duplicated Set -->
+        <div class="gallery-item"><img src="/static/images/her1.png" alt="Pri 1" class="gallery-img"></div>
+        <div class="gallery-item"><img src="/static/images/her2.png" alt="Pri 2" class="gallery-img"></div>
+        <div class="gallery-item"><img src="/static/images/her3.png" alt="Pri 3" class="gallery-img"></div>
+        <div class="gallery-item"><img src="/static/images/her4.png" alt="Pri 4" class="gallery-img"></div>
+        <div class="gallery-item"><img src="/static/images/her1.png" alt="Pri 5" class="gallery-img"></div>
+        <div class="gallery-item"><img src="/static/images/her2.png" alt="Pri 6" class="gallery-img"></div>
+      </div>
     </div>
 
-    <h1>She said YES ❤️</h1>
+    <!-- GLASSMORPHIC STAGE CONTAINER -->
+    <main class="stage-container">
+      <div class="card-deck">
 
-    <div style="display:grid;gap:.8rem;margin-top:1.2rem;">
-      <div class="reason">Your thoughtfulness</div>
-      <div class="reason">Your smile</div>
-      <div class="reason">Your support</div>
-      <div class="reason">Our conversations</div>
-      <div class="reason">Just you</div>
-    </div>
+        <!-- CARD 1: HAPPY SWEET 18 -->
+        <section class="celebration-card active" id="card-0">
+          <h2 class="card-title">My Sweet 18 🎂</h2>
+          <p class="card-text">
+            To the girl who has captured my heart completely. Today, we celebrate <b>18 beautiful years</b> of your life. 
+            You are entering a brand new chapter, growing more beautiful, kind, and inspiring with every single day.
+          </p>
+          <div class="highlight-box">
+            "You are a rare masterpiece, and being by your side is my favorite adventure."
+          </div>
+          <p class="card-text">
+            Use the buttons below to flip through the pages of this celebration book. Let's take a little stroll down memory lane.
+          </p>
+        </section>
 
-    <p class="signature">
-      This page exists only for you.<br>
-      Built with love — by MENE.
-    </p>
+        <!-- CARD 2: MY BETTER HALF -->
+        <section class="celebration-card" id="card-1">
+          <h2 class="card-title">My Better Half 💞</h2>
+          <p class="card-text">
+            They say a partner is someone who supports you, but you are so much more than that. 
+            You are my <b>better half</b>, my peace, and my voice of reason. You make the mundane things feel like magic.
+          </p>
+          <p class="card-text">
+            Whether we are talking about life, laughing at silly memes, or planning our future, 
+            every moment spent with you is a treasure. Thank you for choosing me to walk this beautiful path with you.
+          </p>
+          <div class="highlight-box" style="border-color: var(--gold-main);">
+            "In a room full of art, I would still stare at you."
+          </div>
+        </section>
+
+        <!-- CARD 3: 18 REASONS WHY I LOVE YOU -->
+        <section class="celebration-card" id="card-2">
+          <h2 class="card-title">18 Reasons Why... 🌸</h2>
+          <p class="card-text">
+            Click on each of the <b>18 hearts</b> below to reveal one of the countless reasons why you are the love of my life:
+          </p>
+          
+          <div class="reasons-grid">
+            <!-- 18 grid items -->
+            <div class="reason-node" onclick="showReason(0)">1</div>
+            <div class="reason-node" onclick="showReason(1)">2</div>
+            <div class="reason-node" onclick="showReason(2)">3</div>
+            <div class="reason-node" onclick="showReason(3)">4</div>
+            <div class="reason-node" onclick="showReason(4)">5</div>
+            <div class="reason-node" onclick="showReason(5)">6</div>
+            <div class="reason-node" onclick="showReason(6)">7</div>
+            <div class="reason-node" onclick="showReason(7)">8</div>
+            <div class="reason-node" onclick="showReason(8)">9</div>
+            <div class="reason-node" onclick="showReason(9)">10</div>
+            <div class="reason-node" onclick="showReason(10)">11</div>
+            <div class="reason-node" onclick="showReason(11)">12</div>
+            <div class="reason-node" onclick="showReason(12)">13</div>
+            <div class="reason-node" onclick="showReason(13)">14</div>
+            <div class="reason-node" onclick="showReason(14)">15</div>
+            <div class="reason-node" onclick="showReason(15)">16</div>
+            <div class="reason-node" onclick="showReason(16)">17</div>
+            <div class="reason-node" onclick="showReason(17)">18</div>
+          </div>
+
+          <div class="reasons-display" id="reasonDisplay">
+            Click any heart number above to reveal a reason...
+          </div>
+        </section>
+
+        <!-- CARD 4: THE HEART JAR -->
+        <section class="celebration-card" id="card-3">
+          <h2 class="card-title">The Jar of Hearts ✉️</h2>
+          <p class="card-text">
+            Whenever you feel down, tired, or just need a reminder of how special you are, shake this virtual jar. 
+            It contains sweet little messages directly from my heart.
+          </p>
+          
+          <div class="jar-wrapper">
+            <div class="jar-container" id="heartJar" onclick="triggerJarNote()">
+              <div class="jar-hearts-layer" id="jarHearts"></div>
+            </div>
+            <span class="jar-hint">Tap the Jar to shake out a message! 🫙</span>
+          </div>
+        </section>
+
+        <!-- CARD 5: BIRTHDAY CAKE & WISH -->
+        <section class="celebration-card" id="card-4">
+          <h2 class="card-title">Make a Wish, Babe! 🕯️</h2>
+          <p class="card-text">
+            No 18th celebration is complete without a birthday cake! Here is your custom virtual cake. 
+            Click on each candle to blow it out and make your secret wish.
+          </p>
+          
+          <div class="cake-wrapper">
+            <div class="cake" id="birthdayCake">
+              <!-- Candles -->
+              <div class="candles-container">
+                <div class="candle" onclick="blowCandle(0)"><div class="flame" id="flame-0"></div></div>
+                <div class="candle" onclick="blowCandle(1)"><div class="flame" id="flame-1"></div></div>
+                <div class="candle" onclick="blowCandle(2)"><div class="flame" id="flame-2"></div></div>
+              </div>
+              
+              <!-- Cake Layers -->
+              <div class="cake-layer cake-layer-top">
+                <div class="cake-frosting">
+                  <div class="drip"></div>
+                  <div class="drip"></div>
+                  <div class="drip"></div>
+                  <div class="drip"></div>
+                </div>
+              </div>
+              <div class="cake-layer cake-layer-bottom"></div>
+            </div>
+            <button class="blow-btn" id="blowAllBtn" onclick="blowAllCandles()">Blow out all candles! 💨</button>
+            <h3 id="cakeMessage" style="color: var(--gold-light); display: none; text-align: center; font-family: var(--font-title); font-size: 1.8rem; text-shadow: 0 0 10px rgba(234,179,8,0.5);">May all your dreams come true! 🌟</h3>
+          </div>
+        </section>
+
+        <!-- CARD 6: THE FINAL TOAST -->
+        <section class="celebration-card" id="card-5">
+          <h2 class="card-title">A Toast to Us 🥂</h2>
+          <p class="card-text">
+            Cheers to 18 sweet years of your existence, and to many, many more chapters of love, joy, and adventure. 
+            No matter where life takes us, remember that you will always be my babe, my favorite person, and my home.
+          </p>
+          <p class="card-text">
+            I promise to support your dreams, keep making you laugh, and love you deeper with every beat of my heart.
+          </p>
+          <div class="signature-section">
+            <span style="opacity: 0.8;">With all my heart, forever and always,</span>
+            <span class="toast-sig">MENE</span>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- STAGE FOOTER & NAVIGATION -->
+      <footer class="stage-footer">
+        <button class="nav-btn" id="prevBtn" onclick="prevCard()" disabled>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back
+        </button>
+        
+        <div class="dot-container" id="dotContainer"></div>
+        
+        <button class="nav-btn" id="nextBtn" onclick="nextCard()">
+          Next
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </footer>
+    </main>
+
   </div>
-</div>
 
-<script>
-/* =========================
-   HEARTBEAT
-   ========================= */
-const beat = document.getElementById("heartbeat");
-let beatOn = false;
+  <!-- FLOATING NOTE BUBBLE (FOR THE JAR) -->
+  <div class="note-bubble" id="noteBubble" onclick="closeNote()"></div>
 
-function enableBeat() {
-  if (beatOn) return;
-  beat.volume = .15;
-  beat.play().catch(()=>{});
-  beatOn = true;
-  document.body.removeEventListener("click", enableBeat);
-}
-document.body.addEventListener("click", enableBeat);
+  <!-- ==========================================
+       JAVASCRIPT FUNCTIONALITY
+       ========================================== -->
+  <script>
+    /* =========================================
+       AUDIO LOGIC
+       ========================================= */
+    const beat = document.getElementById("heartbeat");
+    let isMuted = true;
 
-function pulse(v=.25) {
-  if (!beatOn) return;
-  beat.volume = Math.min(v,.35);
-  document.body.classList.add("heartbeat-pulse");
-  setTimeout(()=>{
-    beat.volume=.15;
-    document.body.classList.remove("heartbeat-pulse");
-  },400);
-}
+    function initAudio() {
+      beat.volume = 0.15;
+    }
 
-/* =========================
-   MODAL FLOW
-   ========================= */
-let current = 1;
+    function toggleAudio() {
+      const statusText = document.getElementById("audio-status");
+      const audioIcon = document.getElementById("audio-icon");
+      
+      if (isMuted) {
+        beat.play().catch(e => console.log("Audio play blocked: ", e));
+        statusText.innerText = "Sound: On";
+        isMuted = false;
+        audioIcon.innerHTML = `
+          <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        `;
+        pulseHeartbeat();
+      } else {
+        beat.pause();
+        statusText.innerText = "Sound: Off";
+        isMuted = true;
+        audioIcon.innerHTML = `
+          <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        `;
+      }
+    }
 
-function show(n) {
-  document.getElementById(`m${current}`)?.classList.remove("active");
-  document.getElementById(`m${n}`)?.classList.add("active");
-  current = n;
-  pulse();
-}
+    function pulseHeartbeat(vol = 0.25) {
+      if (isMuted) return;
+      beat.volume = Math.min(vol, 0.35);
+      document.body.classList.add("heartbeat-pulse");
+      setTimeout(() => {
+        beat.volume = 0.15;
+        document.body.classList.remove("heartbeat-pulse");
+      }, 400);
+    }
 
-function next(n){ show(n); }
+    // Trigger visual pulse on click anywhere when sound is on
+    document.body.addEventListener("click", () => {
+      if (!isMuted) {
+        pulseHeartbeat(0.2);
+      }
+    });
 
-function sad(){
-  document.getElementById("moodText").innerHTML =
-    "I hate that you’re tired… but I hope this reminds you how deeply I care ❤️";
+    /* =========================================
+       ENTRY SCREEN FLOW
+       ========================================= */
+    function startCelebration() {
+      // Toggle sound on since user explicitly interacted
+      toggleAudio();
+      
+      const entry = document.getElementById("entryScreen");
+      const hub = document.getElementById("mainHub");
+      
+      entry.classList.add("fade-out");
+      hub.classList.add("active");
+      
+      // Initialize background particles
+      initParticles();
+      
+      // Spawn welcoming confetti
+      heartConfetti(50);
+    }
 
-  document.querySelector(".heart-svg").style.filter =
-    "drop-shadow(0 0 28px rgba(251,113,133,.9))";
+    /* =========================================
+       CARD NAVIGATION SYSTEM
+       ========================================= */
+    let currentCardIndex = 0;
+    const cards = document.querySelectorAll(".celebration-card");
+    const totalCards = cards.length;
+    
+    // Create progress dots dynamically
+    const dotContainer = document.getElementById("dotContainer");
+    for (let i = 0; i < totalCards; i++) {
+      const dot = document.createElement("div");
+      dot.className = `dot ${i === 0 ? "active" : ""}`;
+      dot.onclick = () => jumpToCard(i);
+      dotContainer.appendChild(dot);
+    }
+    
+    const dots = document.querySelectorAll(".dot");
 
-  show(3);
-}
+    function updateCardVisibility() {
+      // Auto-close the jar message note if open
+      closeNote();
 
+      cards.forEach((card, idx) => {
+        if (idx === currentCardIndex) {
+          card.classList.add("active");
+        } else {
+          card.classList.remove("active");
+        }
+      });
+      
+      dots.forEach((dot, idx) => {
+        if (idx === currentCardIndex) {
+          dot.classList.add("active");
+        } else {
+          dot.classList.remove("active");
+        }
+      });
 
-/* =========================
-   NO BUTTON CHAOS
-   ========================= */
-function runNo(){
-  pulse(.3);
-  const no = document.getElementById("noBtn");
-  const yes = document.getElementById("yesBtn");
+      // Update button states
+      document.getElementById("prevBtn").disabled = currentCardIndex === 0;
+      document.getElementById("nextBtn").disabled = currentCardIndex === totalCards - 1;
+      
+      pulseHeartbeat(0.3);
+    }
 
-  no.style.left = Math.random()*200+"px";
-  no.style.top = Math.random()*80+"px";
+    function nextCard() {
+      if (currentCardIndex < totalCards - 1) {
+        currentCardIndex++;
+        updateCardVisibility();
+      }
+    }
 
-  const s = (parseFloat(yes.dataset.s)||1)+.12;
-  yes.dataset.s=s;
-  yes.style.transform=`scale(${s})`;
-}
+    function prevCard() {
+      if (currentCardIndex > 0) {
+        currentCardIndex--;
+        updateCardVisibility();
+      }
+    }
 
-/* =========================
-   FINAL
-   ========================= */
-function yes() {
-  pulse(.35);
-  heartConfetti(60);
+    function jumpToCard(index) {
+      currentCardIndex = index;
+      updateCardVisibility();
+    }
 
-  localStorage.setItem("priYes", "1");
+    /* =========================================
+       CARD 3: 18 REASONS INTERACTION
+       ========================================= */
+    const reasons = [
+      "Your Smile: It lights up my darkest days instantly.",
+      "Your Kindness: The way you genuinely care for everyone around you.",
+      "Your Laughter: The sweetest, most infectious melody I have ever heard.",
+      "Your Warmth: How safe, comfortable, and loved I feel in your presence.",
+      "Your Strength: You inspire me to be a better version of myself every single day.",
+      "Your Dreams: The passion and spark in your eyes when you look at the future.",
+      "Your Wisdom: You understand life deeply and always give the best guidance.",
+      "Your Voice: The absolute calm it brings to my mind whenever I hear it.",
+      "Your Support: You are my biggest cheerleader, my anchor, and my rock.",
+      "Our Inside Jokes: The silly, ridiculous things only you and I understand.",
+      "Your Patience: The way you handle me, especially at my worst moments.",
+      "Your Eyes: I see my whole world reflected in them, full of depth.",
+      "Your Generosity: You always give selflessly without expecting anything back.",
+      "Your Creativity: How you find art and beauty in the simplest things.",
+      "Our Conversations: We can talk for hours about everything and nothing.",
+      "Your Touch: The gentle spark that instantly heals my soul.",
+      "Your Uniqueness: There is absolutely no one else like you in this universe.",
+      "Just You: For being my babe, my better half, and my everything."
+    ];
 
-  document.getElementById("m4").classList.remove("active");
-  document.getElementById("final").classList.add("active");
-}
+    function showReason(index) {
+      const display = document.getElementById("reasonDisplay");
+      const nodes = document.querySelectorAll(".reason-node");
+      
+      // Reset active states
+      nodes.forEach(node => node.classList.remove("active"));
+      
+      // Apply active and viewed states
+      nodes[index].classList.add("active");
+      nodes[index].classList.add("viewed");
+      
+      // Update display text with animation
+      display.style.opacity = 0;
+      setTimeout(() => {
+        display.innerText = reasons[index];
+        display.style.opacity = 1;
+      }, 150);
+      
+      pulseHeartbeat(0.3);
+    }
 
+    /* =========================================
+       CARD 4: THE JAR OF HEARTS MESSAGES
+       ========================================= */
+    const jarQuotes = [
+      "You are the best thing that ever happened to me. Happy 18th! ❤️",
+      "I fall in love with you more and more every single day.",
+      "You are my sunshine, my love, and my home. 🏡",
+      "Thank you for being my better half and filling my life with joy.",
+      "Cheers to 18 years of your beautiful existence! 🥂",
+      "My heart beats only for you. Forever and always. 💓",
+      "You look absolutely gorgeous today (and every other day)! 😍",
+      "I am so incredibly proud of you and the person you are becoming.",
+      "You make my world complete, Pri. 🌸",
+      "No matter what, I will always be right here by your side."
+    ];
 
-if(localStorage.getItem("priYes")){
-  document.querySelectorAll(".overlay").forEach(o=>o.classList.remove("active"));
-  document.getElementById("final").classList.add("active");
-}
+    // Populate jar with mini hearts dynamically
+    const jarHeartsContainer = document.getElementById("jarHearts");
+    for (let i = 0; i < 8; i++) {
+      const miniHeart = document.createElement("div");
+      miniHeart.className = "jar-mini-heart";
+      miniHeart.style.background = `hsl(${340 + Math.random()*15}, 90%, 65%)`;
+      miniHeart.style.bottom = (10 + Math.random() * 50) + "px";
+      miniHeart.style.left = (15 + Math.random() * 80) + "px";
+      miniHeart.style.transform = `rotate(${Math.random() * 90}deg) scale(${0.6 + Math.random()*0.5})`;
+      jarHeartsContainer.appendChild(miniHeart);
+    }
 
-/* =========================
-   HEART CONFETTI BURST
-   ========================= */
-function heartConfetti(count = 40) {
-  for (let i = 0; i < count; i++) {
-    const heart = document.createElement("div");
-    heart.className = "confetti-heart";
+    function triggerJarNote() {
+      const jar = document.getElementById("heartJar");
+      jar.classList.add("jar-shake");
+      
+      pulseHeartbeat(0.35);
 
-    const size = Math.random() * 10 + 10;
-    heart.style.width = size + "px";
-    heart.style.height = size + "px";
+      setTimeout(() => {
+        jar.classList.remove("jar-shake");
+        
+        // Pick random quote
+        const randIndex = Math.floor(Math.random() * jarQuotes.length);
+        const bubble = document.getElementById("noteBubble");
+        
+        bubble.innerText = jarQuotes[randIndex];
+        bubble.style.display = "block";
+        bubble.style.top = "50%";
+        bubble.style.left = "50%";
+        bubble.style.transform = "translate(-50%, -50%) scale(0.8)";
+        bubble.style.opacity = 0;
+        
+        // GSAP animate bubble in
+        if (window.gsap) {
+          gsap.to(bubble, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" });
+        } else {
+          bubble.style.transform = "translate(-50%, -50%) scale(1)";
+          bubble.style.opacity = 1;
+        }
+        
+        // Spawn mini hearts confetti
+        heartConfetti(15);
+      }, 500);
+    }
 
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.background = `hsl(${340 + Math.random()*10}, 90%, 70%)`;
+    function closeNote() {
+      const bubble = document.getElementById("noteBubble");
+      if (window.gsap) {
+        gsap.to(bubble, { scale: 0.8, opacity: 0, duration: 0.3, onComplete: () => {
+          bubble.style.display = "none";
+        }});
+      } else {
+        bubble.style.display = "none";
+      }
+    }
 
-    const duration = Math.random() * 2 + 3;
-    heart.style.animationDuration = duration + "s";
+    /* =========================================
+       CARD 5: BIRTHDAY CAKE & FLAMES
+       ========================================= */
+    let extinguishedFlames = [false, false, false];
 
-    document.body.appendChild(heart);
+    function blowCandle(index) {
+      const flame = document.getElementById(`flame-${index}`);
+      if (!flame.classList.contains("extinguished")) {
+        flame.classList.add("extinguished");
+        extinguishedFlames[index] = true;
+        pulseHeartbeat(0.25);
+        checkCakeStatus();
+      }
+    }
 
-    setTimeout(() => heart.remove(), duration * 1000);
-  }
-}
+    function blowAllCandles() {
+      for (let i = 0; i < 3; i++) {
+        const flame = document.getElementById(`flame-${i}`);
+        flame.classList.add("extinguished");
+        extinguishedFlames[i] = true;
+      }
+      pulseHeartbeat(0.35);
+      checkCakeStatus();
+    }
 
-</script>
+    function checkCakeStatus() {
+      if (extinguishedFlames.every(f => f === true)) {
+        document.getElementById("cakeMessage").style.display = "block";
+        document.getElementById("blowAllBtn").style.display = "none";
+        
+        // Trigger massive heart confetti celebration
+        heartConfetti(80);
+        
+        // Trigger GSAP message entrance
+        if (window.gsap) {
+          gsap.from("#cakeMessage", { scale: 0.5, opacity: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" });
+        }
+      }
+    }
+
+    /* =========================================
+       CANVAS BACKGROUND PARTICLE SYSTEM
+       ========================================= */
+    let canvas, ctx, particles = [];
+    
+    function initParticles() {
+      canvas = document.getElementById("particleCanvas");
+      ctx = canvas.getContext("2d");
+      
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+      
+      // Initial pool of particles
+      for (let i = 0; i < 25; i++) {
+        particles.push(createParticle(true));
+      }
+      
+      animateParticles();
+    }
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createParticle(randomY = false) {
+      return {
+        x: Math.random() * canvas.width,
+        y: randomY ? Math.random() * canvas.height : canvas.height + 20,
+        size: Math.random() * 8 + 6,
+        speedY: -(Math.random() * 1.2 + 0.4),
+        speedX: Math.random() * 0.8 - 0.4,
+        opacity: Math.random() * 0.5 + 0.3,
+        color: `hsl(${340 + Math.random()*20}, 90%, ${70 + Math.random()*15}%)`,
+        angle: Math.random() * Math.PI * 2,
+        spin: Math.random() * 0.02 - 0.01
+      };
+    }
+
+    function drawHeart(ctx, x, y, size, color, opacity) {
+      ctx.save();
+      ctx.globalAlpha = opacity;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(x, y + size / 4);
+      ctx.quadraticCurveTo(x, y, x + size / 2, y);
+      ctx.quadraticCurveTo(x + size, y, x + size, y + size / 3);
+      ctx.quadraticCurveTo(x + size, y + size * 2/3, x + size / 2, y + size);
+      ctx.quadraticCurveTo(x, y + size * 2/3, x, y + size / 3);
+      ctx.quadraticCurveTo(x, y, x, y + size / 4);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw background light glow effect
+      const glowGrad = ctx.createRadialGradient(
+        canvas.width / 2, canvas.height / 2, 10,
+        canvas.width / 2, canvas.height / 2, canvas.width
+      );
+      glowGrad.addColorStop(0, "rgba(40, 15, 25, 0.4)");
+      glowGrad.addColorStop(1, "rgba(10, 3, 6, 0.95)");
+      ctx.fillStyle = glowGrad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Manage particles
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.y += p.speedY;
+        p.x += p.speedX;
+        p.angle += p.spin;
+        
+        drawHeart(ctx, p.x, p.y, p.size, p.color, p.opacity);
+
+        // Remove if off-screen and spawn replacement
+        if (p.y < -20 || p.x < -20 || p.x > canvas.width + 20) {
+          particles[i] = createParticle(false);
+        }
+      }
+      
+      requestAnimationFrame(animateParticles);
+    }
+
+    /* =========================================
+       HEART CONFETTI BURST
+       ========================================= */
+    function heartConfetti(count = 40) {
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement("div");
+        heart.className = "confetti-heart";
+
+        const size = Math.random() * 8 + 8;
+        heart.style.width = size + "px";
+        heart.style.height = size + "px";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.background = `hsl(${340 + Math.random()*20}, 95%, 68%)`;
+
+        const duration = Math.random() * 2 + 2.5;
+        heart.style.animationDuration = duration + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), duration * 1000);
+      }
+    }
+    
+    // Initialize standard details on load
+    window.addEventListener("DOMContentLoaded", () => {
+      initAudio();
+    });
+  </script>
 
 </body>
 </html>
